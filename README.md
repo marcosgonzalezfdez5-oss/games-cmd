@@ -99,8 +99,9 @@ python number_guesser.py
 Open a terminal in this folder, then run the game you want:
 
 ```powershell
-python tictactoe.py
-python minesweeper.py
-python blackjack.py
-python number_guesser.py
+python ./games/tictactoe.py
+python ./games/minesweeper.py
+python ./games/blackjack.py
+python ./games/number_guesser.py
+python ./games/sudoku.py
 ```
