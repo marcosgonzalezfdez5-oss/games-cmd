@@ -164,13 +164,14 @@ def player_turn(deck, player_hand, dealer_hand, hints_enabled, running_count):
         print()
         print_hand("Dealer", dealer_hand, hide_first_card=True)
         print_hand("You", player_hand)
-        if hints_enabled:
-            recommendation, reason = get_hint(player_hand, dealer_hand, running_count)
-            print(f"Hint: {recommendation.title()} - {reason}.")
-
+        
         if hand_value(player_hand) > 21:
             print("You busted!")
             return False, running_count
+
+        if hints_enabled:
+            recommendation, reason = get_hint(player_hand, dealer_hand, running_count)
+            print(f"Hint: {recommendation.title()} - {reason}.")
 
         if get_player_choice() == "stand":
             return True, running_count
