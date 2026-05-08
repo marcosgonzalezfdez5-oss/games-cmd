@@ -147,10 +147,12 @@ def parse_move(text):
     return ("move", row, col, val)
 
 
-def apply_move(current_board, puzzle_board, row, col, value):
+def apply_move(current_board, puzzle_board, solved_board, row, col, value):
     """Write a move to the board; return a status string."""
     if puzzle_board[row][col] != 0:
         return "clue"
+    if value != solved_board[row][col]:
+        return "wrong"
     current_board[row][col] = value
     return "ok"
 
@@ -211,9 +213,12 @@ def play_game():
 
         elif action == "move":
             _, row, col, val = result
-            status = apply_move(current_board, puzzle_board, row, col, val)
+            status = apply_move(current_board, puzzle_board, solved_board, row, col, val)
             if status == "clue":
                 print("That's a starting clue — you can't change it.")
+                continue
+            if status == "wrong":
+                print(f"{val} is not correct for that cell. Try again.")
                 continue
 
         print_board(current_board, puzzle_board, difficulty_name)
